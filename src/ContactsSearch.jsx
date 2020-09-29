@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
-const ContactsSearch = () => {
-    const searchName = "";
+const ContactsSearch = ({ onHandleSearch }) => {
+
+    const [searchName, setSearchName] = useState(" ");
+    //const searchName = "";
     const handleChange = () => { };
+
+    const handleSearch = () => {
+        onHandleSearch();
+    }
 
     return (
         <InputGroup className="mb-3 col-6">
@@ -15,7 +21,7 @@ const ContactsSearch = () => {
                 value={searchName}
                 onChange={handleChange} />
             <InputGroup.Append>
-                <Button variant="outline-secondary">Search</Button>
+                <Button variant="outline-secondary" onClick={handleSearch}>Search</Button>
             </InputGroup.Append>
         </InputGroup>)
 };
