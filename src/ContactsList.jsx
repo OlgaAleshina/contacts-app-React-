@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
 const ContactsList = ({ contacts, onHandleDelete, onHandleEdit }) => {
+    const [isEditable, setIsEditable] = setState(false);
 
     const editContact = (id) => {
         onHandleEdit(id)
