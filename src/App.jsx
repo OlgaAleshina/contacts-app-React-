@@ -8,6 +8,11 @@ const App = () => {
   const [contacts, setContacts] = useState([{ id: 1, name: "Mark", phone: 454545, email: "we@mdo" },
   { id: 2, name: "Dark", phone: 464646, email: "re@mdo" }]);
 
+  const handleAddUser = (user) => {
+    setContacts([...contacts, user]);
+    //contacts.push(user);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +20,7 @@ const App = () => {
         <p>
           Contacts App
         </p>
-        <ContactsForm />
+        <ContactsForm onHandleAdd={handleAddUser} />
         <ContactsSearch />
         <ContactsList contacts={contacts} />
       </header>
@@ -23,6 +28,6 @@ const App = () => {
     </div>
   );
 }
-
+//
 
 export default App;

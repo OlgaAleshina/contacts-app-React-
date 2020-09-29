@@ -3,14 +3,15 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
-const ContactsList = (props) => {
+const ContactsList = ({ contacts }) => {
 
     const editContact = () => { };
     const deleteContact = () => { };
 
-    const contactsTable = props.contacts.map(contact => {
-        return (<tr>
-            <td>{contact.id}</td>
+    const contactsTable = contacts.map((contact, i = 1) => {
+        i++;
+        return (<tr key={contact.id}>
+            <td>{i}</td>
             <td>{contact.name}</td>
             <td>{contact.phone}</td>
             <td>{contact.email}</td>
