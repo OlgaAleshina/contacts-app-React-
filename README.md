@@ -12,6 +12,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Deployment
 
-The app is deployed on Github Pages:
+The app is deployed on Github Pages:https://olgaaleshina.github.io/contacts-app-React-/
 
 https://jsonplaceholder.typicode.com/
