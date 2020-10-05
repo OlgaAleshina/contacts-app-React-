@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContactsList from "./containers/ContactsList";
 import ContactsForm from "./containers/ContactsForm";
 import ContactsSearch from "./containers/ContactsSearch";
 import Container from "react-bootstrap/Container";
+import axios from 'axios';
+import API from "./API.js";
 import "./App.scss";
 
+const API_URL = "http://localhost:3001/contacts";
 
 const App = () => {
-  const [contacts, setContacts] = useState([{ id: 1, name: "Mark", phone: 454545, email: "we@mdo" },
-  { id: 2, name: "Dark", phone: 464646, email: "re@mdo" }]);
+
+  const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(API_URL);
+        setContacts(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
+
+    fetchData();
+  },
+
+    []);
 
   //set if the search filter is used
   const [isSearched, setIsSearched] = useState(false);
@@ -16,12 +40,19 @@ const App = () => {
   const [searchResult, setSearchResult] = useState("");
 
   const handleAddContact = (user) => {
+    axios.post(API_URL, user)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
     setContacts([...contacts, user]);
-    //contacts.push(user);
+
   };
 
   //takes id of contact to delete from ContactsList component
   const handleDeleteContact = (id) => {
+    // axios.delete(API_URL, id)
+
     const filteredContacts = contacts.filter((contact) => contact.id !== id);
     setContacts(filteredContacts);
   };
@@ -71,3 +102,8 @@ const App = () => {
 }
 
 export default App;
+/*<ContactsList
+          contacts={isSearched ? searchResult : contacts}
+          onDeleteContact={handleDeleteContact}
+          onEditContact={handleEditContact}
+        />*/
