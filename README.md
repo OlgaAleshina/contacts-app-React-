@@ -41,7 +41,7 @@ npm start
 
 ### Deployment
 
-The app is deployed on Github Pages:https://olgaaleshina.github.io/contacts-app-React-/
+The app will be deployed on Github Pages.
 
 
 ## Built With
