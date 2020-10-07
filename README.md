@@ -1,6 +1,6 @@
 # Contacts App (React Hooks)
 
-Contacts application made with react hooks.
+CRUD application made with react hooks and fake rest API.
 
 ## Features
 
@@ -18,9 +18,6 @@ The project includes
 ``` bash
 cd contacts-app-React-
 ```
-
-### `json-server --watch db.json --port 3001`
- Runs mock server
 
 
 - Install dependencies
@@ -52,6 +49,5 @@ The app is deployed on Github Pages:https://olgaaleshina.github.io/contacts-app-
 - [react](https://reactjs.org/docs/getting-started.html) - Framework for building user interfaces.
 - [react-bootstrap](https://react-bootstrap.github.io/getting-started/introduction) - Styling.
 - [bootstrap icons](https://icons.getbootstrap.com/) - Icons.
-- [](https://jsonplaceholder.typicode.com/)
 - [json-server]
 - [axios]

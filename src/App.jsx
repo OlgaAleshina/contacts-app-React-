@@ -3,11 +3,9 @@ import ContactsList from "./containers/ContactsList";
 import ContactsForm from "./containers/ContactsForm";
 import ContactsSearch from "./containers/ContactsSearch";
 import Container from "react-bootstrap/Container";
-import axios from 'axios';
-import API from "./API.js";
+import API from "./utils/API.js";
 import "./App.scss";
 
-const API_URL = "http://localhost:3001/contacts";
 
 const App = () => {
 
@@ -21,7 +19,7 @@ const App = () => {
       setIsLoading(true);
 
       try {
-        const result = await axios(API_URL);
+        const result = await API('contacts/');
         setContacts(result.data);
       } catch (error) {
         setIsError(true);
@@ -40,7 +38,7 @@ const App = () => {
   const [searchResult, setSearchResult] = useState("");
 
   const handleAddContact = (user) => {
-    axios.post(API_URL, user)
+    API.post('/contacts', user)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -51,7 +49,7 @@ const App = () => {
 
   //takes id of contact to delete from ContactsList component
   const handleDeleteContact = (id) => {
-    // axios.delete(API_URL, id)
+    API.delete(`/contacts/${id}`)
 
     const filteredContacts = contacts.filter((contact) => contact.id !== id);
     setContacts(filteredContacts);
@@ -59,6 +57,7 @@ const App = () => {
 
 
   const handleEditContact = (editedContact) => {
+    API.put(`/contacts/${editedContact.id}`, editedContact)
     const filteredContacts = contacts.filter(
       (contact) => contact.id !== editedContact.id
     );
